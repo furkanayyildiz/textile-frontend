@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,10 +12,12 @@ import Container from "@mui/material/Container";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormLabel from "@mui/material/FormLabel";
+import MuiPhoneNumber from "material-ui-phone-number";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 const theme = createTheme();
 
 const Register = () => {
+  const [phone, setPhone] = useState();
   const [value, setValue] = React.useState(null);
 
   const handleSubmit = (event) => {
@@ -91,14 +93,12 @@ const Register = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <MuiPhoneNumber
                   required
                   fullWidth
-                  type="tel"
-                  id="phone"
-                  label="Phone Number"
-                  name="phone"
-                  //pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                  variant="outlined"
+                  value={phone}
+                  defaultCountry={"tr"}
                 />
               </Grid>
               <Grid item xs={12}>
