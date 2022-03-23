@@ -1,16 +1,60 @@
 import React from "react";
 import textileBackground from "./img/textile-background.jpg";
+import textileLogo from "./img/textile-logo.png";
 import "./LoginPage.css";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
+import PropTypes from "prop-types";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
+function Item(props) {
+  const { sx, ...other } = props;
+  return (
+    <Box
+      sx={{
+        p: 1,
+        m: 1,
+        bgcolor: (theme) =>
+          theme.palette.mode === "dark" ? "#101010" : "grey.100",
+        color: (theme) =>
+          theme.palette.mode === "dark" ? "grey.300" : "grey.800",
+        border: "1px solid",
+        borderColor: (theme) =>
+          theme.palette.mode === "dark" ? "grey.800" : "grey.300",
+        borderRadius: 2,
+        fontSize: "0.875rem",
+        fontWeight: "700",
+        ...sx,
+      }}
+      {...other}
+    />
+  );
+}
 const LoginPage = () => {
   return (
     <body>
-      <header>header</header>
+      <header>
+        <div style={{ width: "100%" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              p: 1,
+              m: 1,
+              bgcolor: "background.paper",
+              borderRadius: 1,
+            }}
+          >
+            <Item>
+              <a href="/">
+                <img src={textileLogo} alt="textileLogo" className="logo" />
+              </a>
+            </Item>
+          </Box>
+        </div>
+      </header>
       <main>
         <div>
           <img

@@ -12,8 +12,11 @@ body {
 }
 
 header {
-  height: 75px;
-  background-color: red;
+  height: 150px;
+  display: flex;
+}
+.logo {
+  height: 100px;
 }
 
 main {
