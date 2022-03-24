@@ -17,9 +17,11 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 const theme = createTheme();
 
 const Register = () => {
-  const [phone, setPhone] = useState();
-  const [value, setValue] = React.useState(null);
-
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [mail, setMail] = useState("");
+  const [password, setPassword] = useState("");
+  /*
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -28,6 +30,25 @@ const Register = () => {
       password: data.get("password"),
     });
   };
+  */
+  function saveData() {
+    let data = { name, surname, mail, password };
+    console.warn(data);
+    fetch("http://192.168.68.109:8014/register", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((resp) => {
+      console.warn("resp", resp);
+      resp.json().then((result) => {
+        console.warn("result", result);
+      });
+    });
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -44,21 +65,20 @@ const Register = () => {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
+          <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="Name"
+                  name="name"
                   required
                   fullWidth
                   id="name"
                   label="Name"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
                   autoFocus
                 />
               </Grid>
@@ -70,6 +90,10 @@ const Register = () => {
                   label="Surname"
                   name="surname"
                   autoComplete="family-name"
+                  value={surname}
+                  onChange={(e) => {
+                    setSurname(e.target.value);
+                  }}
                 />
               </Grid>
               <Grid item xs={12}></Grid>
@@ -90,6 +114,10 @@ const Register = () => {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={mail}
+                  onChange={(e) => {
+                    setMail(e.target.value);
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -97,7 +125,6 @@ const Register = () => {
                   required
                   fullWidth
                   variant="outlined"
-                  value={phone}
                   defaultCountry={"tr"}
                 />
               </Grid>
@@ -147,14 +174,18 @@ const Register = () => {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
               </Grid>
             </Grid>
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={saveData}
             >
               Sign Up
             </Button>
