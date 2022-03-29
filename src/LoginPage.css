@@ -15,9 +15,6 @@ header {
   height: 150px;
   display: flex;
 }
-.logo {
-  height: 100px;
-}
 
 main {
   flex: auto;
