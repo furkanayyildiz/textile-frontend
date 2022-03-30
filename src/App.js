@@ -3,6 +3,7 @@ import "./App.css";
 import SignIn from "./components/SignIn/SignIn";
 import Footer from "./components/Footer/Footer";
 import MainHeader from "./components/MainHeader/MainHeader";
+import Home from "./components/Home/Home";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,7 +13,10 @@ function App() {
     <React.Fragment>
       <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
 
-      <Register />
+      <main>
+        {!isLoggedIn && <SignIn onLogin={loginHandler} />}
+        {isLoggedIn && <Home onLogout={logoutHandler} />}
+      </main>
     </React.Fragment>
   );
 }

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,14 +12,49 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
 
-const SignIn = () => {
-  const handleSubmit = (event) => {
+const SignIn = (props) => {
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     username: data.get("username"),
+  //     password: data.get("password"),
+  //   });
+  // };
+
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [emailIsValid, setEmailIsValid] = useState();
+  const [enteredPassword, setEnteredPassword] = useState("");
+  const [passwordIsValid, setPasswordIsValid] = useState();
+  const [formIsValid, setFormIsValid] = useState(false);
+
+  const emailChangeHandler = (event) => {
+    setEnteredEmail(event.target.value);
+
+    setFormIsValid(
+      event.target.value.includes("@") && enteredPassword.trim().length > 6
+    );
+  };
+
+  const passwordChangeHandler = (event) => {
+    setEnteredPassword(event.target.value);
+
+    setFormIsValid(
+      event.target.value.trim().length > 6 && enteredEmail.includes("@")
+    );
+  };
+
+  const validateEmailHandler = () => {
+    setEmailIsValid(enteredEmail.includes("@"));
+  };
+
+  const validatePasswordHandler = () => {
+    setPasswordIsValid(enteredPassword.trim().length > 6);
+  };
+
+  const submitHandler = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get("username"),
-      password: data.get("password"),
-    });
+    props.onLogin(enteredEmail, enteredPassword);
   };
 
   return (
@@ -40,7 +75,7 @@ const SignIn = () => {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            //onSubmit={handleSubmit}
             noValidate
             sx={{ mt: 1 }}
           >
