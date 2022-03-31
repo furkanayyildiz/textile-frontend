@@ -15,7 +15,7 @@ function App() {
       <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
       <div className="bg">
         <main>
-          {!isLoggedIn && <Register />}
+          {!isLoggedIn && <SignIn onLogin={loginHandler} />}
           {isLoggedIn && <Home onLogout={logoutHandler} />}
         </main>
       </div>

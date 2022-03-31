@@ -83,6 +83,7 @@ const SignIn = (props) => {
             sx={{ mt: 1 }}
           >
             <TextField
+              className={` ${emailIsValid === false ? classes.invalid : ""}`}
               margin="normal"
               required
               fullWidth
@@ -93,8 +94,12 @@ const SignIn = (props) => {
               autoFocus
               color="primary"
               style={{ background: "#E6E8EF" }}
+              value={enteredEmail}
+              onChange={emailChangeHandler}
+              onBlur={validateEmailHandler}
             />
             <TextField
+              className={` ${passwordIsValid === false ? classes.invalid : ""}`}
               margin="normal"
               required
               fullWidth
@@ -105,12 +110,16 @@ const SignIn = (props) => {
               autoComplete="current-password"
               color="primary"
               style={{ background: "#E6E8EF" }}
+              value={enteredPassword}
+              onChange={passwordChangeHandler}
+              onBlur={validatePasswordHandler}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={!formIsValid}
             >
               Sign In
             </Button>
