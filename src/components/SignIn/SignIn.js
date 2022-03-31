@@ -63,7 +63,7 @@ const SignIn = (props) => {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
-          className={classes.ss}
+          className={classes.signInBox}
           sx={{
             padding: 5,
             display: "flex",
@@ -73,7 +73,7 @@ const SignIn = (props) => {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" color="common.white">
             Sign in
           </Typography>
           <Box

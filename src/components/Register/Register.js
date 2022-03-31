@@ -14,6 +14,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormLabel from "@mui/material/FormLabel";
 import MuiPhoneNumber from "material-ui-phone-number";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import classes from "./Register.module.css";
 const theme = createTheme();
 
 const Register = () => {
@@ -54,15 +55,17 @@ const Register = () => {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
+          className={classes.registerBox}
           sx={{
-            marginTop: 8,
+            padding: 5,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            background: "#5656564f",
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" color="common.white">
             Register
           </Typography>
           <Box component="form" noValidate sx={{ mt: 3 }}>
@@ -80,6 +83,8 @@ const Register = () => {
                     setName(e.target.value);
                   }}
                   autoFocus
+                  color="primary"
+                  style={{ background: "#E6E8EF" }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -94,6 +99,8 @@ const Register = () => {
                   onChange={(e) => {
                     setSurname(e.target.value);
                   }}
+                  color="primary"
+                  style={{ background: "#E6E8EF" }}
                 />
               </Grid>
               <Grid item xs={12}></Grid>
@@ -104,6 +111,8 @@ const Register = () => {
                   id="companyName"
                   label="Company Name"
                   name="companyName"
+                  color="primary"
+                  style={{ background: "#E6E8EF" }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -118,6 +127,8 @@ const Register = () => {
                   onChange={(e) => {
                     setMail(e.target.value);
                   }}
+                  color="primary"
+                  style={{ background: "#E6E8EF" }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -126,6 +137,8 @@ const Register = () => {
                   fullWidth
                   variant="outlined"
                   defaultCountry={"tr"}
+                  color="primary"
+                  style={{ background: "#E6E8EF" }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -135,6 +148,8 @@ const Register = () => {
                   id="identityNo"
                   label="Personal Identity Number"
                   name="identityNo"
+                  color="primary"
+                  style={{ background: "#E6E8EF" }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -178,6 +193,8 @@ const Register = () => {
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
+                  color="primary"
+                  style={{ background: "#E6E8EF" }}
                 />
               </Grid>
             </Grid>
@@ -191,7 +208,7 @@ const Register = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" color="#fff">
                   Already have an account? Sign in
                 </Link>
               </Grid>
