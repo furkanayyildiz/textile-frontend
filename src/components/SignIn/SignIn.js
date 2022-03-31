@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import classes from "./SignIn.module.css";
 
 const theme = createTheme();
 
@@ -62,11 +63,13 @@ const SignIn = (props) => {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
+          className={classes.ss}
           sx={{
-            marginTop: 15,
+            padding: 5,
             display: "flex",
             flexDirection: "column",
-            alignItems: "end",
+            alignItems: "center",
+            background: "#5656564f",
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
@@ -88,6 +91,8 @@ const SignIn = (props) => {
               name="username"
               autoComplete="username"
               autoFocus
+              color="primary"
+              style={{ background: "#E6E8EF" }}
             />
             <TextField
               margin="normal"
@@ -98,6 +103,8 @@ const SignIn = (props) => {
               type="password"
               id="password"
               autoComplete="current-password"
+              color="primary"
+              style={{ background: "#E6E8EF" }}
             />
             <Button
               type="submit"
@@ -109,12 +116,17 @@ const SignIn = (props) => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link
+                  color="#fff"
+                  href="#"
+                  variant="body2"
+                  style={{ textDecoration: "none" }}
+                >
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link color="#fff" href="#" variant="body2">
                   {"Don't have an account? Register"}
                 </Link>
               </Grid>

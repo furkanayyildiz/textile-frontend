@@ -12,11 +12,12 @@ function App() {
   return (
     <React.Fragment>
       <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
-
-      <main>
-        {!isLoggedIn && <SignIn onLogin={loginHandler} />}
-        {isLoggedIn && <Home onLogout={logoutHandler} />}
-      </main>
+      <div className="bg">
+        <main>
+          {!isLoggedIn && <SignIn onLogin={loginHandler} />}
+          {isLoggedIn && <Home onLogout={logoutHandler} />}
+        </main>
+      </div>
     </React.Fragment>
   );
 }
