@@ -135,7 +135,7 @@ const SignIn = (props) => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link color="#fff" href="#" variant="body2">
+                <Link href="/register" color="#fff" variant="body2">
                   {"Don't have an account? Register"}
                 </Link>
               </Grid>

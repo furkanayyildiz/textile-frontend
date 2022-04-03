@@ -5,21 +5,23 @@ import Register from "./components/Register/Register";
 import Footer from "./components/Footer/Footer";
 import MainHeader from "./components/MainHeader/MainHeader";
 import Home from "./components/Home/Home";
+import { BrowserRouter, Routes, Switch, Route } from "react-router-dom";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const loginHandler = () => {};
   const logoutHandler = () => {};
   return (
-    <React.Fragment>
+    <BrowserRouter>
       <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
       <div className="bg">
-        <main>
-          {!isLoggedIn && <SignIn onLogin={loginHandler} />}
-          {isLoggedIn && <Home onLogout={logoutHandler} />}
-        </main>
+        <Routes>
+          <Route exact path="/" element={<SignIn />} />
+          <Route exact path="/signin" element={<SignIn />} />
+          <Route exact path="/register" element={<Register />} />
+        </Routes>
       </div>
-    </React.Fragment>
+    </BrowserRouter>
   );
 }
 

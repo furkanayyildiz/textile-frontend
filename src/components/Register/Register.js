@@ -35,7 +35,7 @@ const Register = () => {
   function saveData() {
     let data = { name, surname, mail, password };
     console.warn(data);
-    fetch("http://192.168.68.109:8014/register", {
+    fetch("http://192.168.1.243:8014/register", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -208,7 +208,7 @@ const Register = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2" color="#fff">
+                <Link href="/signin" variant="body2" color="#fff">
                   Already have an account? Sign in
                 </Link>
               </Grid>
