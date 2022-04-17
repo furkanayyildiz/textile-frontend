@@ -20,7 +20,11 @@ const theme = createTheme();
 const Register = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [company_name, setCompany_Name] = useState("");
   const [mail, setMail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [personal_identity_no, setPersonal_identity_no] = useState("");
+  const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   /*
   const handleSubmit = (event) => {
@@ -32,8 +36,21 @@ const Register = () => {
     });
   };
   */
+  const handlePhone = (e) => {
+    setPhone(e.target.value);
+  };
+
   function saveData() {
-    let data = { name, surname, mail, password };
+    let data = {
+      name,
+      surname,
+      company_name,
+      mail,
+      phone,
+      personal_identity_no,
+      gender,
+      password,
+    };
     console.warn(data);
     fetch("http://192.168.1.243:8014/register", {
       method: "POST",
@@ -113,6 +130,10 @@ const Register = () => {
                   name="companyName"
                   color="primary"
                   style={{ background: "#E6E8EF" }}
+                  value={company_name}
+                  onChange={(e) => {
+                    setCompany_Name(e.target.value);
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -139,6 +160,8 @@ const Register = () => {
                   defaultCountry={"tr"}
                   color="primary"
                   style={{ background: "#E6E8EF" }}
+                  value={phone}
+                  onChange={setPhone}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -150,9 +173,13 @@ const Register = () => {
                   name="identityNo"
                   color="primary"
                   style={{ background: "#E6E8EF" }}
+                  value={personal_identity_no}
+                  onChange={(e) => {
+                    setPersonal_identity_no(e.target.value);
+                  }}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} className={classes.radioLabel}>
                 <FormLabel id="demo-row-radio-buttons-group-label">
                   Gender
                 </FormLabel>
@@ -166,15 +193,19 @@ const Register = () => {
                     row
                     aria-labelledby="demo-row-radio-buttons-group-label"
                     name="row-radio-buttons-group"
+                    value={gender}
+                    onChange={(e) => {
+                      setGender(e.target.value);
+                    }}
                   >
                     <FormControlLabel
                       value="female"
-                      control={<Radio />}
+                      control={<Radio color="error" />}
                       label="Female"
                     />
                     <FormControlLabel
                       value="male"
-                      control={<Radio />}
+                      control={<Radio color="error" />}
                       label="Male"
                     />
                   </RadioGroup>
