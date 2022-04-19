@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -10,54 +10,59 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import classes from "./SignIn.module.css";
+import axios from "axios";
 
 const theme = createTheme();
 
 const SignIn = (props) => {
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     username: data.get("username"),
-  //     password: data.get("password"),
-  //   });
-  // };
-
-  const [enteredEmail, setEnteredEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [emailIsValid, setEmailIsValid] = useState();
-  const [enteredPassword, setEnteredPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
-  const emailChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
+  useEffect(() => {
+    setFormIsValid(username.includes("@") && password.trim().length > 6);
+  }, [username, password]);
 
-    setFormIsValid(
-      event.target.value.includes("@") && enteredPassword.trim().length > 6
-    );
+  const emailChangeHandler = (event) => {
+    setUsername(event.target.value);
   };
 
   const passwordChangeHandler = (event) => {
-    setEnteredPassword(event.target.value);
-
-    setFormIsValid(
-      event.target.value.trim().length > 6 && enteredEmail.includes("@")
-    );
+    setPassword(event.target.value);
   };
 
   const validateEmailHandler = () => {
-    setEmailIsValid(enteredEmail.includes("@"));
+    setEmailIsValid(username.includes("@"));
   };
 
   const validatePasswordHandler = () => {
-    setPasswordIsValid(enteredPassword.trim().length > 6);
+    setPasswordIsValid(password.trim().length > 6);
   };
 
-  const submitHandler = (event) => {
+  // const submitHandler = (event) => {
+  //   event.preventDefault();
+  //   props.onLogin(mail, password);
+  // };
+  const handleSubmit = (event) => {
     event.preventDefault();
-    props.onLogin(enteredEmail, enteredPassword);
-  };
+    const data = {
+      username,
+      password,
+    };
 
+    axios
+      .post("login", data)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.token);
+        // localStorage.setItem("token", res.token);
+      })
+      .catch((err) => {
+        console.log(err + "ssss");
+      });
+  };
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -76,11 +81,12 @@ const SignIn = (props) => {
           <Typography component="h1" variant="h5" color="common.white">
             Sign in
           </Typography>
+
           <Box
             component="form"
-            //onSubmit={handleSubmit}
             noValidate
             sx={{ mt: 1 }}
+            onSubmit={handleSubmit}
           >
             <TextField
               className={` ${emailIsValid === false ? classes.invalid : ""}`}
@@ -88,13 +94,13 @@ const SignIn = (props) => {
               required
               fullWidth
               id="email"
-              label="Username"
+              label="Email"
               name="username"
               autoComplete="username"
               autoFocus
               color="primary"
               style={{ background: "#E6E8EF" }}
-              value={enteredEmail}
+              value={username}
               onChange={emailChangeHandler}
               onBlur={validateEmailHandler}
             />
@@ -110,7 +116,7 @@ const SignIn = (props) => {
               autoComplete="current-password"
               color="primary"
               style={{ background: "#E6E8EF" }}
-              value={enteredPassword}
+              value={password}
               onChange={passwordChangeHandler}
               onBlur={validatePasswordHandler}
             />
@@ -123,6 +129,7 @@ const SignIn = (props) => {
             >
               Sign In
             </Button>
+
             <Grid container>
               <Grid item xs>
                 <Link

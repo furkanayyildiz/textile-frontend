@@ -15,6 +15,7 @@ import FormLabel from "@mui/material/FormLabel";
 import MuiPhoneNumber from "material-ui-phone-number";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import classes from "./Register.module.css";
+import axios from "axios";
 const theme = createTheme();
 
 const Register = () => {
@@ -36,12 +37,10 @@ const Register = () => {
     });
   };
   */
-  const handlePhone = (e) => {
-    setPhone(e.target.value);
-  };
 
-  function saveData() {
-    let data = {
+  function saveData(event) {
+    event.preventDefault();
+    const data = {
       name,
       surname,
       company_name,
@@ -52,19 +51,27 @@ const Register = () => {
       password,
     };
     console.warn(data);
-    fetch("http://192.168.1.243:8014/register", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then((resp) => {
-      console.warn("resp", resp);
-      resp.json().then((result) => {
-        console.warn("result", result);
+    // fetch("http://192.168.68.124:8014/register", {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // }).then((resp) => {
+    //   console.warn("resp", resp);
+    //   resp.json().then((result) => {
+    //     console.warn("result", result);
+    //   });
+    // });
+    axios
+      .post("register", data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
   }
 
   return (
@@ -85,7 +92,7 @@ const Register = () => {
           <Typography component="h1" variant="h5" color="common.white">
             Register
           </Typography>
-          <Box component="form" noValidate sx={{ mt: 3 }}>
+          <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={saveData}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -199,12 +206,12 @@ const Register = () => {
                     }}
                   >
                     <FormControlLabel
-                      value="female"
+                      value="Kadin"
                       control={<Radio color="error" />}
                       label="Female"
                     />
                     <FormControlLabel
-                      value="male"
+                      value="Erkek"
                       control={<Radio color="error" />}
                       label="Male"
                     />
@@ -233,7 +240,7 @@ const Register = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={saveData}
+              type="submit"
             >
               Sign Up
             </Button>
