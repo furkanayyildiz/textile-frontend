@@ -51,16 +51,17 @@ const SignIn = (props) => {
       username,
       password,
     };
-
+    console.log(data);
     axios
       .post("login", data)
       .then((res) => {
         console.log(res);
-        console.log(res.data.token);
-        // localStorage.setItem("token", res.token);
+        localStorage.setItem("token", res.data.token);
       })
-      .catch((err) => {
-        console.log(err + "ssss");
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.status + "error kod");
+        }
       });
   };
   return (
