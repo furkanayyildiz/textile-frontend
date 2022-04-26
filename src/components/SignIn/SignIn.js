@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import classes from "./SignIn.module.css";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const theme = createTheme();
 
 const SignIn = (props) => {
@@ -20,7 +20,8 @@ const SignIn = (props) => {
   const [password, setPassword] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
-
+  //const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     setFormIsValid(username.includes("@") && password.trim().length > 6);
   }, [username, password]);
@@ -57,6 +58,10 @@ const SignIn = (props) => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
+        props.userSet(res.data.user);
+        if (res.status === 200) {
+          navigate("/home");
+        }
       })
       .catch(function (error) {
         if (error.response) {
@@ -64,6 +69,7 @@ const SignIn = (props) => {
         }
       });
   };
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

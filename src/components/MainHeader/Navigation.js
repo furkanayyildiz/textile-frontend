@@ -3,18 +3,25 @@ import classes from "./Navigation.module.css";
 
 const Navigation = (props) => {
   return (
-    <React.Fragment>
-      {props.isLoggedIn && (
-        <li>
-          <a href="/">About Us</a>
-        </li>
-      )}
-      {props.isLoggedIn && (
-        <li>
-          <button onClick={props.onLogout}>Logout</button>
-        </li>
-      )}
-    </React.Fragment>
+    <nav className={classes.nav}>
+      <ul>
+        {props.isLoggedIn && (
+          <li>
+            <a href="/">Home</a>
+          </li>
+        )}
+        {props.isLoggedIn && (
+          <li>
+            <a href="/">About Us</a>
+          </li>
+        )}
+        {props.isLoggedIn && (
+          <li>
+            <button onClick={props.onLogout}>Logout</button>
+          </li>
+        )}
+      </ul>
+    </nav>
   );
 };
 

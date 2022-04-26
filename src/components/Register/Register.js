@@ -16,6 +16,7 @@ import MuiPhoneNumber from "material-ui-phone-number";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import classes from "./Register.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const theme = createTheme();
 
 const Register = () => {
@@ -27,17 +28,7 @@ const Register = () => {
   const [personal_identity_no, setPersonal_identity_no] = useState("");
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
-  /*
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get("Username"),
-      password: data.get("password"),
-    });
-  };
-  */
-
+  const navigate = useNavigate();
   function saveData(event) {
     event.preventDefault();
     const data = {
@@ -50,7 +41,6 @@ const Register = () => {
       gender,
       password,
     };
-    console.warn(data);
     // fetch("http://192.168.68.124:8014/register", {
     //   method: "POST",
     //   headers: {
@@ -68,6 +58,9 @@ const Register = () => {
       .post("register", data)
       .then((res) => {
         console.log(res);
+        if (res.status === 200) {
+          navigate("/signin");
+        }
       })
       .catch((err) => {
         console.log(err);
