@@ -33,7 +33,7 @@ function App() {
       <MainHeader user={user} userSet={userSet} />
       <div className="bg">
         <Routes>
-          <Route exact path="/" element={<SignIn />} />
+          <Route exact path="/" element={<SignIn userSet={userSet} />} />
           <Route exact path="/signin" element={<SignIn userSet={userSet} />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/home" element={() => <Home user={user} />} />
