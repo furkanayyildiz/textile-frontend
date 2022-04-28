@@ -4,7 +4,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://192.168.68.116:8014/";
+axios.defaults.baseURL = "http://192.168.1.121:8014/";
 // axios.defaults.headers.common["Authorization"] =
 //   "Bearer " + localStorage.getItem("token");
 

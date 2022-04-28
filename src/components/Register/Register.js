@@ -59,7 +59,7 @@ const Register = () => {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          navigate("/signin");
+          navigate("/");
         }
       })
       .catch((err) => {
@@ -239,7 +239,7 @@ const Register = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/signin" variant="body2" color="#fff">
+                <Link href="/" variant="body2" color="#fff">
                   Already have an account? Sign in
                 </Link>
               </Grid>
