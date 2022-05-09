@@ -42,10 +42,6 @@ const SignIn = (props) => {
     setPasswordIsValid(password.trim().length > 6);
   };
 
-  // const submitHandler = (event) => {
-  //   event.preventDefault();
-  //   props.onLogin(mail, password);
-  // };
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = {

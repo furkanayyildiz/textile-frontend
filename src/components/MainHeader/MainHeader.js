@@ -1,19 +1,21 @@
 import React from "react";
 import textileLogo from "../../img/textile-logo.png";
 import classes from "./MainHeader.module.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const MainHeader = ({ user }) => {
-  // const handleLogout = () => {
-  //   localStorage.clear();
-  //   userSet(null);
-  // };
+const MainHeader = (props) => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.clear();
+    props.userSet(null);
+    navigate("/");
+  };
   return (
     <header className={classes.mainheader}>
       <a href="/">
         <img src={textileLogo} alt="textileLogo" className={classes.logo} />
       </a>
-      {user && (
+      {props.user && (
         <nav className={classes.nav}>
           <ul>
             <li>
@@ -25,7 +27,10 @@ const MainHeader = ({ user }) => {
             </li>
 
             <li>
-              <button>Logout</button>
+              <a href="/">Contact Us</a>
+            </li>
+            <li>
+              <button onClick={handleLogout}>Logout</button>
             </li>
           </ul>
         </nav>

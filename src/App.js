@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 
 //page imports
 import SignIn from "./components/SignIn/SignIn";
@@ -19,21 +19,21 @@ function App() {
     axios
       .get(config)
       .then((response) => {
-        userSet(response.data.user);
+        userSeting(response.data.user);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  let userSet = (user) => {
+  let userSeting = (user) => {
     setUser(user);
   };
   return (
     <BrowserRouter>
-      <MainHeader user={user} userSet={userSet} />
+      <MainHeader user={user} userSet={userSeting} />
       <div className="bg">
         <Routes>
-          <Route exact path="/" element={<SignIn userSet={userSet} />} />
+          <Route exact path="/" element={<SignIn userSet={userSeting} />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/home" element={() => <Home user={user} />} />
         </Routes>
