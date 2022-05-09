@@ -14,9 +14,12 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormLabel from "@mui/material/FormLabel";
 import MuiPhoneNumber from "material-ui-phone-number";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import classes from "./Register.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+//pages import
+import classes from "./Register.module.css";
+import { register } from "../../api/index";
 const theme = createTheme();
 
 const Register = () => {
@@ -29,7 +32,9 @@ const Register = () => {
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  function saveData(event) {
+  //const [redirect, setRedirect] = useState(false);
+
+  const saveData = async (event) => {
     event.preventDefault();
     const data = {
       name,
@@ -41,31 +46,22 @@ const Register = () => {
       gender,
       password,
     };
-    // fetch("http://192.168.68.124:8014/register", {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // }).then((resp) => {
-    //   console.warn("resp", resp);
-    //   resp.json().then((result) => {
-    //     console.warn("result", result);
+    let resp = await register(data);
+    if (resp) {
+      navigate("/");
+    }
+    // axios
+    //   .post("register", data)
+    //   .then((res) => {
+    //     console.log(res);
+    //     if (res.status === 200) {
+    //       navigate("/");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
     //   });
-    // });
-    axios
-      .post("register", data)
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          navigate("/");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  };
 
   return (
     <ThemeProvider theme={theme}>
