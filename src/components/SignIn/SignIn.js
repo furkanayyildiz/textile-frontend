@@ -9,7 +9,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 //page imports
 import classes from "./SignIn.module.css";
@@ -44,28 +43,33 @@ const SignIn = (props) => {
     setPasswordIsValid(password.trim().length > 6);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
       username,
       password,
     };
-    console.log(data);
-    axios
-      .post("login", data)
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem("token", res.data.token);
-        props.userSet(res.data.user);
-        if (res.status === 200) {
-          navigate("/home");
-        }
-      })
-      .catch(function (error) {
-        if (error.response) {
-          console.log(error.response.status + "error kod");
-        }
-      });
+    let resp = await signIn(data);
+    localStorage.setItem("token", resp.data.token);
+    props.userSet(resp.data.user);
+    if (resp) {
+      navigate("/home");
+    }
+    // axios
+    //   .post("login", data)
+    //   .then((res) => {
+    //     console.log(res);
+    //     localStorage.setItem("token", res.data.token);
+    //     props.userSet(res.data.user);
+    //     if (res.status === 200) {
+    //       navigate("/home");
+    //     }
+    //   })
+    //   .catch(function (error) {
+    //     if (error.response) {
+    //       console.log(error.response.status + "error kod");
+    //     }
+    //   });
   };
 
   return (
