@@ -1,15 +1,27 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getUser } from "../../api";
+
+//page imports
 import classes from "./Home.module.css";
-const Home = ({ user }) => {
+const Home = () => {
+  let { userId } = useParams();
+
+  const [user, setUser] = useState();
+
+  const getUserInfo = async () => {
+    let resp = await getUser(userId);
+    setUser(resp);
+    console.log("user info", user);
+  };
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
   return (
     <div className={classes.home}>
-      {user ? (
-        <h1>
-          Hello {user.name} {user.surname}
-        </h1>
-      ) : (
-        <h1>You are Not logged In</h1>
-      )}
+      <h1>You are logged In</h1>
+      <h1>merhaba {user && user.name}</h1>
     </div>
   );
 };

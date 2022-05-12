@@ -9,33 +9,33 @@ import Register from "./components/Register/Register";
 import MainHeader from "./components/MainHeader/MainHeader";
 import Home from "./components/Home/Home";
 function App() {
-  const [user, setUser] = useState("");
-  useEffect(() => {
-    const config = {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    };
-    axios
-      .get(config)
-      .then((response) => {
-        userSeting(response.data.user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-  let userSeting = (user) => {
-    setUser(user);
-  };
+  //const [user, setUser] = useState("");
+  // useEffect(() => {
+  //   const config = {
+  //     headers: {
+  //       Authorization: "Bearer " + localStorage.getItem("token"),
+  //     },
+  //   };
+  //   axios
+  //     .get(config)
+  //     .then((response) => {
+  //       userSeting(response.data.user);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+  // let userSeting = (user) => {
+  //   setUser(user);
+  // };
   return (
     <BrowserRouter>
-      <MainHeader user={user} userSet={userSeting} />
+      <MainHeader />
       <div className="bg">
         <Routes>
-          <Route exact path="/" element={<SignIn userSet={userSeting} />} />
+          <Route exact path="/" element={<SignIn />} />
           <Route exact path="/register" element={<Register />} />
-          <Route exact path="/home" element={() => <Home user={user} />} />
+          <Route exact path="/home/:userId" element={<Home />} />
         </Routes>
       </div>
     </BrowserRouter>

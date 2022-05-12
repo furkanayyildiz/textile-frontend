@@ -15,13 +15,14 @@ import classes from "./SignIn.module.css";
 import { signIn } from "../../api/index";
 const theme = createTheme();
 
-const SignIn = (props) => {
+const SignIn = () => {
   const [username, setUsername] = useState("");
   const [emailIsValid, setEmailIsValid] = useState();
   const [password, setPassword] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
-  //const [loggedIn, setLoggedIn] = useState(false);
+  const [userInfo, setUserInfo] = useState();
+
   const navigate = useNavigate();
   useEffect(() => {
     setFormIsValid(username.includes("@") && password.trim().length > 6);
@@ -49,28 +50,18 @@ const SignIn = (props) => {
       username,
       password,
     };
+
     let resp = await signIn(data);
-    localStorage.setItem("token", resp.data.token);
-    props.userSet(resp.data.user);
-    if (resp) {
-      navigate("/home");
-    }
-    // axios
-    //   .post("login", data)
-    //   .then((res) => {
-    //     console.log(res);
-    //     localStorage.setItem("token", res.data.token);
-    //     props.userSet(res.data.user);
-    //     if (res.status === 200) {
-    //       navigate("/home");
-    //     }
-    //   })
-    //   .catch(function (error) {
-    //     if (error.response) {
-    //       console.log(error.response.status + "error kod");
-    //     }
-    //   });
+    console.log("sign in response ", resp);
+    setUserInfo(resp.user);
+    localStorage.setItem("token", resp.token);
   };
+
+  useEffect(() => {
+    if (userInfo) {
+      window.location.href = `/home/${userInfo.id}`;
+    }
+  }, [userInfo]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -95,7 +86,7 @@ const SignIn = (props) => {
             component="form"
             noValidate
             sx={{ mt: 1 }}
-            onSubmit={handleSubmit}
+            onSubmit={(e) => handleSubmit(e)}
           >
             <TextField
               className={` ${emailIsValid === false ? classes.invalid : ""}`}

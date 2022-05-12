@@ -14,7 +14,6 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormLabel from "@mui/material/FormLabel";
 import MuiPhoneNumber from "material-ui-phone-number";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 //pages import
@@ -50,17 +49,6 @@ const Register = () => {
     if (resp) {
       navigate("/");
     }
-    // axios
-    //   .post("register", data)
-    //   .then((res) => {
-    //     console.log(res);
-    //     if (res.status === 200) {
-    //       navigate("/");
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 
   return (
