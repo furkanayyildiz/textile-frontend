@@ -23,7 +23,6 @@ const SignIn = () => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [userInfo, setUserInfo] = useState();
 
-  const navigate = useNavigate();
   useEffect(() => {
     setFormIsValid(username.includes("@") && password.trim().length > 6);
   }, [username, password]);
@@ -52,7 +51,6 @@ const SignIn = () => {
     };
 
     let resp = await signIn(data);
-    console.log("sign in response ", resp);
     setUserInfo(resp.user);
     localStorage.setItem("token", resp.token);
   };

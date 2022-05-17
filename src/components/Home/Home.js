@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getUser } from "../../api";
+import Card from "../UI/Card/Card";
 
 //page imports
 import classes from "./Home.module.css";
@@ -20,8 +21,9 @@ const Home = () => {
 
   return (
     <div className={classes.home}>
-      <h1>You are logged In</h1>
-      <h1>merhaba {user && user.name}</h1>
+      <Card>
+        <h1>Merhaba {user && user.name}</h1>
+      </Card>
     </div>
   );
 };
