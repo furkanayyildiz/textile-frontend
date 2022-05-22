@@ -16,6 +16,7 @@ import Logout from "@mui/icons-material/Logout";
 //page imports
 import textileLogo from "../../img/textile-logo.png";
 import classes from "./MainHeader.module.css";
+import { color } from "@mui/system";
 
 const MainHeader = () => {
   const navigate = useNavigate();
@@ -53,17 +54,17 @@ const MainHeader = () => {
             }}
           >
             <Typography sx={{ minWidth: 110 }}>
-              <Link href="#" underline="hover" color="#d1c4e9">
+              <Link href="#" underline="hover" color="#e91e63">
                 {"Home"}
               </Link>
             </Typography>
             <Typography sx={{ minWidth: 110 }}>
-              <Link href="#" underline="hover" color="#d1c4e9">
+              <Link href="#" underline="hover" color="#e91e63">
                 {"About Us"}
               </Link>
             </Typography>
             <Typography sx={{ minWidth: 110 }}>
-              <Link href="#" underline="hover" color="#d1c4e9">
+              <Link href="#" underline="hover" color="#e91e63">
                 {"Contact Us"}
               </Link>
             </Typography>
@@ -76,7 +77,12 @@ const MainHeader = () => {
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
               >
-                <Avatar sx={{ width: 50, height: 50 }}>M</Avatar>
+                <Avatar
+                  sx={{ width: 50, height: 50 }}
+                  className={classes.iconButton}
+                >
+                  M
+                </Avatar>
               </IconButton>
             </Tooltip>
           </Box>
