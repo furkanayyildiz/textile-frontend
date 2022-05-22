@@ -53,11 +53,12 @@ const SignIn = () => {
     let resp = await signIn(data);
     setUserInfo(resp.user);
     localStorage.setItem("token", resp.token);
+    localStorage.setItem("Id", resp.ID);
   };
 
   useEffect(() => {
     if (userInfo) {
-      window.location.href = `/home/${userInfo.id}`;
+      window.location.href = "/home";
     }
   }, [userInfo]);
 

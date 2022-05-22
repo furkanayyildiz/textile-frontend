@@ -20,6 +20,10 @@ import classes from "./MainHeader.module.css";
 const MainHeader = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const id = localStorage.getItem("Id");
+  const navigateProfile = () => {
+    window.location.href = `/profile/${id}`;
+  };
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = "/";
@@ -35,7 +39,7 @@ const MainHeader = () => {
   };
   return (
     <header className={classes.mainheader}>
-      <a href="/">
+      <a href="#">
         <img src={textileLogo} alt="textileLogo" className={classes.logo} />
       </a>
       {token && (
@@ -111,7 +115,7 @@ const MainHeader = () => {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem>
+            <MenuItem onClick={navigateProfile}>
               <Avatar /> My account
             </MenuItem>
             <Divider />

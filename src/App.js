@@ -7,6 +7,7 @@ import SignIn from "./components/SignIn/SignIn";
 import Register from "./components/Register/Register";
 import MainHeader from "./components/MainHeader/MainHeader";
 import Home from "./components/Home/Home";
+import Profile from "./components/Profile/Profile";
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState();
 
@@ -24,7 +25,8 @@ function App() {
         <Routes>
           <Route exact path="/" element={<SignIn />} />
           <Route exact path="/register" element={<Register />} />
-          <Route exact path="/home/:userId" element={<Home />} />
+          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/profile/:userId" element={<Profile />} />
         </Routes>
       </div>
     </BrowserRouter>
