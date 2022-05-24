@@ -8,6 +8,7 @@ import Register from "./components/Register/Register";
 import MainHeader from "./components/MainHeader/MainHeader";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
+import Footer from "./components/Footer/Footer";
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState();
 
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/profile/:userId" element={<Profile />} />
         </Routes>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }
