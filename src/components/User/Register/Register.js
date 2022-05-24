@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 //pages import
 import classes from "./Register.module.css";
-import { register } from "../../api/index";
+import { register } from "../../../api/index";
 const theme = createTheme();
 
 const Register = () => {
@@ -47,7 +47,7 @@ const Register = () => {
     };
     let resp = await register(data);
     if (resp) {
-      navigate("/");
+      navigate("/signin");
     }
   };
 
@@ -223,7 +223,12 @@ const Register = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/" variant="body2" color="#fff">
+                <Link
+                  href="/signin"
+                  variant="body2"
+                  color="#fff"
+                  underline="none"
+                >
                   Already have an account? Sign in
                 </Link>
               </Grid>

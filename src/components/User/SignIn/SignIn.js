@@ -12,7 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 //page imports
 import classes from "./SignIn.module.css";
-import { signIn } from "../../api/index";
+import { signIn } from "../../../api/index";
 const theme = createTheme();
 
 const SignIn = () => {
@@ -135,13 +135,19 @@ const SignIn = () => {
                   color="#fff"
                   href="#"
                   variant="body2"
+                  underline="none"
                   style={{ textDecoration: "none" }}
                 >
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/register" color="#fff" variant="body2">
+                <Link
+                  href="/register"
+                  color="#fff"
+                  variant="body2"
+                  underline="none"
+                >
                   {"Don't have an account? Register"}
                 </Link>
               </Grid>
