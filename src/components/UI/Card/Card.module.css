@@ -1,5 +1,9 @@
 .card {
-  background: white;
+  transform: translateY(30px);
+  background-color: rgb(252, 252, 252);
+  margin-left: 3rem;
+  margin-right: 3rem;
+  padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 10px;
 }
