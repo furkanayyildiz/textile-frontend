@@ -2,7 +2,6 @@ import React from "react";
 
 //page imports
 import classes from "./Home.module.css";
-import Cardd from "../UI/Card/Card";
 import product from "../../img/textile-product-photo.jpg";
 import yarn from "../../img/textile-yarn-photo.jpg";
 import dressingPriceList from "../../img/textile-dressing-price-list-photo.jpg";

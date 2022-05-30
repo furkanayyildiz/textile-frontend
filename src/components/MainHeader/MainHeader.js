@@ -54,7 +54,7 @@ const MainHeader = () => {
             }}
           >
             <Typography sx={{ minWidth: 110 }}>
-              <Link href="#" underline="hover" color="#e91e63">
+              <Link href="/home" underline="hover" color="#e91e63">
                 {"Home"}
               </Link>
             </Typography>
