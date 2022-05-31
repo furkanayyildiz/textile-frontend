@@ -8,8 +8,12 @@ import dressingPriceList from "../../img/textile-dressing-price-list-photo.jpg";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
+  const navigatePrice = useNavigate();
   const navigateYarnList = () => {
     navigate("/yarnlist");
+  };
+  const navigatePriceList = () => {
+    navigatePrice("/dressingpricelist");
   };
   return (
     <div className={classes.home}>
@@ -46,7 +50,6 @@ const Home = () => {
                 <button
                   className="btn btn-danger"
                   type="button"
-                  href="/yarnlist"
                   onClick={navigateYarnList}
                 >
                   Yarn List
@@ -66,7 +69,11 @@ const Home = () => {
             </div>
             <div className="card-footer">
               <div className="d-grid gap-2 ">
-                <button className="btn btn-danger " type="button">
+                <button
+                  className="btn btn-danger "
+                  type="button"
+                  onClick={navigatePriceList}
+                >
                   Dressing Price List
                 </button>
               </div>

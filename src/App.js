@@ -12,6 +12,7 @@ import Footer from "./components/Footer/Footer";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import YarnList from "./components/Yarns/YarnList";
+import DressingPriceList from "./components/DressingPrice/DressingPriceList";
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState();
 
@@ -41,6 +42,11 @@ function App() {
           <Route exact path="/about" element={<About />} />
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/yarnlist" element={<YarnList />} />
+          <Route
+            exact
+            path="/dressingpricelist"
+            element={<DressingPriceList />}
+          />
         </Routes>
       </div>
       <Footer />
