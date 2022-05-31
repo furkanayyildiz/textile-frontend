@@ -5,7 +5,12 @@ import classes from "./Home.module.css";
 import product from "../../img/textile-product-photo.jpg";
 import yarn from "../../img/textile-yarn-photo.jpg";
 import dressingPriceList from "../../img/textile-dressing-price-list-photo.jpg";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+  const navigate = useNavigate();
+  const navigateYarnList = () => {
+    navigate("/yarnlist");
+  };
   return (
     <div className={classes.home}>
       <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -38,7 +43,12 @@ const Home = () => {
             </div>
             <div className="card-footer">
               <div className="d-grid gap-2 ">
-                <button className="btn btn-danger" type="button">
+                <button
+                  className="btn btn-danger"
+                  type="button"
+                  href="/yarnlist"
+                  onClick={navigateYarnList}
+                >
                   Yarn List
                 </button>
               </div>

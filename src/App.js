@@ -1,12 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useParams,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 //page imports
 import SignIn from "./components/User/SignIn/SignIn";
@@ -17,6 +11,7 @@ import Profile from "./components/User/Profile/Profile";
 import Footer from "./components/Footer/Footer";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
+import YarnList from "./components/Yarns/YarnList";
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState();
 
@@ -45,6 +40,7 @@ function App() {
           <Route exact path="/profile/:userId" element={<Profile />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/contact" element={<Contact />} />
+          <Route exact path="/yarnlist" element={<YarnList />} />
         </Routes>
       </div>
       <Footer />
