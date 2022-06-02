@@ -16,7 +16,6 @@ import Logout from "@mui/icons-material/Logout";
 //page imports
 import textileLogo from "../../img/textile-logo.png";
 import classes from "./MainHeader.module.css";
-import { color } from "@mui/system";
 
 const MainHeader = () => {
   const navigate = useNavigate();

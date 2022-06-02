@@ -9,3 +9,13 @@ export const yarnList = async () => {
   });
   return resp;
 };
+
+export const getYarn = async (yarnId) => {
+  const token = localStorage.getItem("token");
+  const resp = await axios.get(`api/yarn/${yarnId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return resp;
+};

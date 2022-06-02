@@ -13,6 +13,8 @@ import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import YarnList from "./components/Yarns/YarnList";
 import DressingPriceList from "./components/DressingPrice/DressingPriceList";
+import ProductList from "./components/Products/ProductList";
+import YarnDetail from "./components/Yarns/YarnDetail";
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState();
 
@@ -47,6 +49,8 @@ function App() {
             path="/dressingpricelist"
             element={<DressingPriceList />}
           />
+          <Route exact path="/productlist" element={<ProductList />} />
+          <Route exact path="/yarndetail/:yarnId" element={<YarnDetail />} />
         </Routes>
       </div>
       <Footer />

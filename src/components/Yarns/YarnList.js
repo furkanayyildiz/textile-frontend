@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 //page imports
 import Card from "../UI/Card/Card";
 import { yarnList } from "../../api";
+import { useNavigate } from "react-router-dom";
 const YarnList = () => {
   const [yarns, setYarns] = useState([]);
-
+  const navigate = useNavigate();
   const getYarnList = async () => {
-    // const token = localStorage.getItem("token");
-    // await axios
-    //   .get("api/yarns", {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   })
-    //   .then((resp) => setYarns(resp.data));
     let resp = await yarnList();
     setYarns(resp.data);
   };
@@ -22,6 +15,10 @@ const YarnList = () => {
     getYarnList();
   }, []);
   console.log("#######", yarns);
+  const navigateYarn = () => {
+    window.location.href = `/yarndetail/${yarns.id}`;
+    console.log("####", yarns.id);
+  };
 
   return (
     <Card>
@@ -42,7 +39,11 @@ const YarnList = () => {
                 <td>{item.name}</td>
                 <td>{item.code}</td>
                 <td>
-                  <button type="button" className="btn btn-info">
+                  <button
+                    type="button"
+                    className="btn btn-info"
+                    onClick={navigateYarn}
+                  >
                     Info
                   </button>
                 </td>
